@@ -126,7 +126,7 @@
 
 (defn- read-next-form []
   (try {:status :success :form (binding [*ns* (create-ns comp/*cljs-ns*)]
-                                 (read))}
+                                 (read *in* false :cljs/quit))}
        (catch Exception e
          (println (.getMessage e))
          {:status :error})))
